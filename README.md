@@ -389,7 +389,7 @@ implement the [Functor](#functor) specification.
 #### `ap` method
 
 ```hs
-ap :: Apply f => f a ~> f (a -> b) -> f b
+ap :: Apply f => f (a -> b) ~> f a -> f b
 ```
 
 A value which has an Apply must provide an `ap` method. The `ap`
@@ -397,16 +397,16 @@ method takes one argument:
 
     a.ap(b)
 
-1. `b` must be an Apply of a function
+1. `b` must be an Apply of any value
 
-    1. If `b` does not represent a function, the behaviour of `ap` is
+    1. If `b` does not represent  value, the behaviour of `ap` is
        unspecified.
     2. `b` must be same Apply as `a`.
 
-2. `a` must be an Apply of any value
+2. `a` must be an Apply of a function
 
-3. `ap` must apply the function in Apply `b` to the value in
-   Apply `a`
+3. `ap` must apply the function in Apply `a` with the value in
+   Apply `b`
 
    1. No parts of return value of that function should be checked.
 
